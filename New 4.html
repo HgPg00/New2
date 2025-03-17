@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testimonials</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f4f4f4; /* Light background to see card edges */
+            padding: 20px;
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid layout */
+        }
+        .testimonial-card {
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .testimonial-card img.avatar {
+            border-radius: 50%;
+            width: 60px; /* Adjust size as needed */
+            height: 60px;
+            object-fit: cover;
+        }
+        .user-info {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .user-details h4 {
+            margin: 0 0 5px 0;
+            font-size: 1em;
+        }
+        .user-details p {
+            margin: 0;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        /* Style 1: Top Left (Dark Speech Bubble) */
+        .testimonial-style-1 {
+            background-color: #2d3748; /* Dark background */
+            color: white;
+            position: relative; /* For speech bubble pointer */
+        }
+        /* Basic speech bubble pointer using pseudo-element */
+        .testimonial-style-1::after {
+            content: "";
+            position: absolute;
+            bottom: -10px; /* Adjust position as needed */
+            left: 30px; /* Adjust position as needed */
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid #2d3748; /* Same as background */
+        }
+        .testimonial-style-1 .user-info {
+            background-color: white; /* Assuming user info part has white background */
+            color: black;
+            padding: 10px;
+            border-radius: 10px;
+            margin-top: 25px; /* Space above user info to not overlap bubble pointer */
+            position: relative;
+            z-index: 1; /* To be above the bubble pointer if they were to overlap */
+        }
+         .testimonial-style-1 .user-details p {
+            color: #718096; /* Lighter text for title */
+        }
+
+        /* Style 2: Top Right (Light Bordered Speech Bubble) */
+        .testimonial-style-2 {
+            background-color: white;
+            border: 1px solid black;
+            position: relative;
+        }
+        .testimonial-style-2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 30px; /* Adjust as needed */
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid white; /* Match background */
+            /* For border on bubble */
+            /* This is trickier and might need more complex CSS or SVG */
+        }
+        .testimonial-style-2 .user-info {
+            /* Assuming similar layout but no distinct background for user */
+        }
+
+        /* Style 3: Middle Right (Dark with Stars) */
+        .testimonial-style-3 {
+            background-color: #2d3748; /* Dark background */
+            color: white;
+        }
+        .testimonial-style-3 .stars {
+            color: #fbbf24; /* Gold color for stars */
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+        .testimonial-style-3 h3 {
+            margin: 0 0 5px 0;
+        }
+        .testimonial-style-3 .title {
+            font-size: 0.9em;
+            color: #a0aec0; /* Lighter text for title */
+            margin-bottom: 15px;
+        }
+
+        /* Middle Row Layout */
+        .middle-row {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr; /* Adjust ratio as needed */
+            gap: 20px;
+            align-items: center;
+        }
+        .middle-row-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            object-fit: cover;
+        }
+
+        /* Style 4: Bottom (Light Bordered with Carousel) */
+        .testimonial-style-4 {
+            background-color: white;
+            border: 1px solid black;
+            text-align: center; /* Center content */
+        }
+        .testimonial-style-4 .carousel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            gap: 15px;
+        }
+        .testimonial-style-4 .carousel img {
+            border-radius: 50%;
+            width: 40px; /* Smaller avatars in carousel */
+            height: 40px;
+            object-fit: cover;
+            opacity: 0.6; /* Dim non-active avatars */
+        }
+        .testimonial-style-4 .carousel img.active {
+            opacity: 1;
+            width: 60px; /* Larger active avatar */
+            height: 60px;
+            border: 2px solid #2d3748; /* Highlight active */
+        }
+        .testimonial-style-4 .carousel-nav {
+            font-size: 1.5em;
+            cursor: pointer;
+            color: #4a5568;
+        }
+        .testimonial-style-4 .carousel-nav:hover {
+            color: #2d3748;
+        }
+        .testimonial-style-4 .user-name-bottom {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Testimonial Style 1: Top Left -->
+    <div class="testimonial-card testimonial-style-1">
+        <p>"I have been solving all the project ideas on roadmap.sh and I am surprised how far I have come from where I started."</p>
+        <p>Highly recommended!</p>
+        <div class="user-info">
+            <img src="https://via.placeholder.com/60" alt="Artem Jones" class="avatar">
+            <div class="user-details">
+                <h4>Artem Jones</h4>
+                <p>Junior Frontend Developer</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonial Style 2: Top Right -->
+    <div class="testimonial-card testimonial-style-2">
+        <p>"Since starting my career in 2021, I have only followed one resource, roadmap.sh, it truly helped me go from 0 to having a job and changing the financial trajectory of my family"</p>
+        <div class="user-info">
+            <img src="https://via.placeholder.com/60" alt="Artem Jones" class="avatar">
+            <div class="user-details">
+                <h4>Artem Jones</h4>
+                <p>Junior Frontend Developer</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Middle Row with Image and Testimonial -->
+    <div class="middle-row" style="grid-column: 1 / -1;"> <!-- Make this row span all columns -->
+        <div class="middle-row-image">
+            <img src="https://via.placeholder.com/300x400" alt="Smiling person">
+        </div>
+        <div class="testimonial-card testimonial-style-3">
+            <div class="stars">
+                ★★★★★ <!-- Replace with actual star icons or images -->
+            </div>
+            <h3>Jackie Mackle</h3>
+            <p class="title">Engineering Manager</p>
+            <p>I find myself recommending roadmap.sh to all the internees or junior developers. It's a great way to skill up and grow in your career.</p>
+        </div>
+    </div>
+
+    <!-- Testimonial Style 4: Bottom -->
+    <div class="testimonial-card testimonial-style-4" style="grid-column: 1 / -1;"> <!-- Make this row span all columns -->
+        <p>roadmap.sh is an incredible resource. I was fortunate to discover it during my university days in 2018. Back then, it was just a single repository with three images. It's amazing to see how much impact it has had on millions of lives since then.</p>
+        <div class="carousel">
+            <span class="carousel-nav">&lt;</span>
+            <img src="https://via.placeholder.com/40" alt="User avatar">
+            <img src="https://via.placeholder.com/60" alt="Artem Jones" class="active">
+            <img src="https://via.placeholder.com/40" alt="User avatar">
+            <span class="carousel-nav">&gt;</span>
+        </div>
+        <p class="user-name-bottom">Artem Jones</p>
+    </div>
+
+</body>
+</html>
